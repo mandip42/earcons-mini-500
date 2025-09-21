@@ -80,7 +80,7 @@ earcons-mini-500/
 - If you later add CC‑BY assets, list them in `metadata/LICENSES.md` with full attribution and URLs.
 
 ## How to cite
-Add the Zenodo DOI once minted and use the provided `CITATION.cff`. Also cite the arXiv data note.
+`(https://doi.org/10.5281/zenodo.17172016)`. Also cite the arXiv data note.
 
 ---
 
