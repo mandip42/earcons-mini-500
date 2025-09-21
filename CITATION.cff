@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "BeepBank-500: A Psychoacoustic Earcon Mini-Corpus"
+message: "If you use this dataset or code, please cite it."
+type: dataset
+version: "1.0.0"
+authors:
+  - family-names: Goswami
+    given-names: Mandip
+#  - orcid: "0000-0000-0000-0000"  # add if available
+keywords:
+  - earcon
+  - psychoacoustics
+  - timbre
+  - UI audio
+license: CC0-1.0
+repository-code: "https://github.com/<your-username>/earcons-mini-500"
+# doi: "10.5281/zenodo.XXXXXXX"  # add after you mint on Zenodo

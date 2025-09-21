@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{siunitx}
+
+\title{BeepBank-500: A Synthetic Earcon Mini-Corpus for UI Sound Research}
+\author{Mandip Goswami}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We introduce \textbf{BeepBank-500}, a compact, fully synthetic earcon/alert dataset (300--500 clips) designed for rapid, rights-clean experimentation in human-computer interaction and audio machine learning. Each clip is generated from a parametric recipe controlling waveform family (sine, square, triangle, FM), fundamental frequency, duration, amplitude envelope, amplitude modulation, and simple Schroeder-style reverberation. We release audio (mono, 48~kHz, 16-bit), a rich metadata table (signal and spectral features), and tiny reproducible baselines for waveform classification and $f_0$ regression. The dataset is intended for tasks such as earcon classification, timbre similarity analyses, and onset detection benchmarks. Audio is released under CC0-1.0, code under MIT. Data and code: \href{https://doi.org/10.5281/zenodo.XXXXXXX}{Zenodo DOI (to be added)}; GitHub: \url{https://github.com/<your-username>/earcons-mini-500}.
+\end{abstract}
+
+\section{Motivation and Scope}
+Briefly motivate earcons as concise, non-speech UI cues and alarms, their psychoacoustic relevance (timbre, roughness, inharmonicity), and the lack of small, rights-clean corpora for quick prototyping. Clarify out-of-scope: speech, music, industrial acoustics, medical claims.
+
+\section{Generation Protocol}
+Describe the signal chain: oscillator $\to$ amplitude modulation $\to$ ADSR envelope $\to$ RMS normalization $\to$ optional Schroeder-style reverb. Specify parameter grids: waveform family, $f_0$ set, durations, envelope presets, AM rates/depths, triad options, and two reverbs (``small'' $\sim$0.3\,s, ``medium'' $\sim$0.6\,s). Mention sample rate and bit depth. Include deterministic seeding for exact regeneration.
+
+\section{Metadata and Features}
+List the CSV schema (columns, units). Define features: peak and RMS dBFS, spectral centroid, bandwidth, zero-crossing rate; note \emph{proxies} for roughness and inharmonicity. If using \texttt{pyloudnorm}, report LUFS (for analysis only). Include guidance for recomputing features.
+
+\section{Baselines and Example Analyses}
+Summarize the two minimal baselines (waveform-family classification with log-mel statistics; $f_0$ regression on single tones with YIN) and report small illustrative numbers (0.81, 53.21 (n=10). Provide a spectrogram figure and a t-SNE/UMAP plot of feature embeddings (optional).
+
+\section{Licensing, Ethics, and Intended Use}
+State that audio is CC0-1.0 (public domain) and code is MIT. Intended uses: research/education on earcons, timbre, and simple psychoacoustic proxies. Non-medical; no safety-critical claims. Detail any known biases or limitations of synthetic data.
+
+\section{Limitations and Future Work}
+Discuss synthetic bias, lack of perceptual studies, and possible extensions: HRTF spatialization, more envelope shapes, richer reverbs, and human listening tests.
+
+\section*{Availability}
+Zenodo DOI: \url{https://doi.org/10.5281/zenodo.XXXXXXX} (to be added).\\
+GitHub: \url{https://github.com/<your-username>/earcons-mini-500}.
+
+\section*{Citation}
+Please cite the Zenodo DOI and this data note when using the dataset.
+
+\end{document}
