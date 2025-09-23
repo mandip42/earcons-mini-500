@@ -26,15 +26,16 @@ Audio ML and HCI work often needs **simple, controllable, rights-clean** non-spe
 - supports **factor-swept** experiments (e.g., robustness to AM depth or reverberation),
 - enables **leakage-aware** splits by parameter families, and
 - provides a **common baseline** for comparable results.
+Prior work on earcons and auditory icons established design principles for non-speech alerts [@Blattner1989EarconsIcons; @Gaver1986AuditoryIcons; @Brewster1993EarconsDesign]. However, widely used open corpora emphasize environmental scenes or music rather than controllable earcons [@Salamon2014UrbanSound; @Piczak2015ESC50; @Gemmeke2017AudioSet; @Mesaros2016DCASEOverview; @Mesaros2018DCASEOverview].
 
 # Software description
 **Design goals:** rights-clean; small but complete; deterministic; pedagogically useful; extensible.
 
 **Core functionality**
-- **Parametric synthesis:** waveform families (sine/square/triangle/FM), f₀ ranges, durations, ADSR presets, optional AM (rate/depth), and three room conditions (dry/small/medium) via lightweight algorithmic reverberation.
-- **Metadata emission:** `metadata.csv` with ID, split, labels/parameters (f₀, duration, envelope, AM, reverb) and level statistics (RMS/peak/crest).
+- **Parametric synthesis:** waveform families (sine/square/triangle/FM), f₀ ranges, durations, ADSR presets, optional AM (rate/depth), and three room conditions (dry/small/medium) via lightweight algorithmic reverberation. (e.g., Schroeder all-pass/comb or small-room image-method variants [@Schroeder1962ArtificialReverb; @Allen1979ImageMethod]).
+- **Metadata emission:** `metadata.csv` with ID, split, labels/parameters (f₀, duration, envelope, AM, reverb) and level statistics (RMS/peak/crest). Feature extraction and inspection are compatible with common Python audio tooling [@McFee2015Librosa].
 - **Deterministic splits:** rule- or hash-based splitting to minimize information leakage.
-- **Baselines:** reproducible waveform-family classification and f₀ regression to verify pipelines.
+- **Baselines:** reproducible waveform-family classification and f₀ regression to verify pipelines. We reference common baselines such as pYIN and CREPE for context [@Mauch2014pYIN; @Kim2018CREPE].
 
 **Project structure:** documentation, quickstart, generation recipes, QC scripts, and a **dataset card** (intended use, limitations, licensing).
 
@@ -44,6 +45,7 @@ Automated checks ensure:
 - **Signal safety:** no clipping, bounded crest factor, DC-offset checks.
 - **Determinism:** fixed seeds and recipe hashing to regenerate the reference set exactly.
 - **De-duplication:** heuristics to avoid near-identical configurations.
+- **Psychoacoustics:** - Where relevant, level targets and envelope shapes follow common practice in audio perception literature [@FastlZwicker2007Psychoacoustics; @OppenheimSchafer2010DTSP].
 A brief listening pass verified envelope correctness, AM audibility, and consistent reverb character.
 
 # Example use cases
@@ -53,10 +55,10 @@ A brief listening pass verified envelope correctness, AM audibility, and consist
 4. **Reproducible ablations:** publish factor-isolated results that others can replicate exactly.
 
 # State of the field
-Open audio datasets emphasize speech, environmental scenes, or music. BeepBank complements them by focusing on **earcons/alerts** with **explicit parametric control** and compact size for rapid iteration [@earcons-foundations; @auditory-icons; @dcase-overview]. It doubles as a teaching corpus and a toy benchmark for sanity-checking model behavior.
+Open audio resources commonly emphasize speech, environmental scenes, or music, including UrbanSound8K, ESC-50, and AudioSet, and the DCASE challenge datasets [@Salamon2014UrbanSound; @Piczak2015ESC50; @Gemmeke2017AudioSet; @Mesaros2016DCASEOverview; @Mesaros2018DCASEOverview]. In contrast, the earcon and auditory-icon literature focuses on design concepts rather than openly licensed, parameter-controlled corpora [@Blattner1989EarconsIcons; @Gaver1986AuditoryIcons; @Brewster1993EarconsDesign; @Kramer1994AuditoryDisplay]. BeepBank complements both threads by providing a compact, rights-clean, parametric earcon toolkit and a toy benchmark that can probe model behavior under controlled factor sweeps.
 
 # Limitations and intended scope
-BeepBank does not replace real-world alarms; domain gaps remain (recording chains, noise, context). It is intentionally **small** and limited to **single-event** tones to maximize accessibility and speed.
+BeepBank does not replace real-world alarms; domain gaps remain (recording chains, noise, context). It is intentionally **small** and limited to **single-event** tones to maximize accessibility and speed. Lightweight reverberation models approximate small-room effects rather than full geometrical acoustics [@Schroeder1962ArtificialReverb; @Allen1979ImageMethod].
 
 # Availability and licensing
 - **Repository:** https://github.com/mandip42/earcons-mini-500
@@ -76,3 +78,4 @@ Thanks to community reviewers for feedback on dataset design and documentation.
 No human-subject data. Work performed outside regular employment duties; no competing interests.
 
 # References
+
